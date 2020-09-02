@@ -11,8 +11,10 @@ export default function Landing() {
         step by step.
       </h1>
       <h4>
-        Build your portfolio and practice job ready skills, all in the cloud
-        with PracticeProblems.
+        Build your portfolio and practice real world software engineering.
+        <br />
+        We'll give you the projects, you give us your code, we'll give you
+        honest feedback.
       </h4>
       <div>
         <Link to="/projects">
