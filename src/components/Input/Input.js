@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Input.scss'
 
-export function Input({ type, label, value, onChange, onSubmit }) {
+export function Input({ type, label, value, onChange, onSubmit, style }) {
   const [isUsed, setIsUsed] = useState(false)
 
   // useEffect(() => {
@@ -9,7 +9,7 @@ export function Input({ type, label, value, onChange, onSubmit }) {
   // }, [value])
 
   return (
-    <div className="Input">
+    <div className="Input" style={style}>
       <label className={isUsed ? 'focused' : ''}>{label}</label>
       {type === 'textarea' ? (
         <textarea

@@ -1,7 +1,7 @@
 import React from 'react'
 import './About.scss'
 
-export default function Tutorials() {
+export default function About() {
   return (
     <div id="About">
       <h1>About TidBytes</h1>
