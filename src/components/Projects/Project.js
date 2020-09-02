@@ -1,7 +1,8 @@
 import React from 'react'
 import './Projects.scss'
+import { Link } from 'react-router-dom'
 
-export default function Project({ project, setActive }) {
+export default function Project({ project }) {
   const difficulties = ['Beginner', 'Intermediate', 'Advanced', 'Expert']
   const arrayToString = arr => arr.join(', ')
 
@@ -11,7 +12,9 @@ export default function Project({ project, setActive }) {
       <h3>{project.name}</h3>
       <h6>{arrayToString(project.content)}</h6>
       <h6>{difficulties[project.difficulty]}</h6>
-      <button onClick={() => setActive(project)}>Open Project</button>
+      <Link to={`/projects/${project.id}`}>
+        <button>Open Project</button>
+      </Link>
     </div>
   )
 }

@@ -1,16 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Modal from '../Modal'
 import { Input } from '../Input/Input'
 import './ActiveProject.scss'
-import { Link } from 'react-router-dom'
+import { Link, useParams, useHistory } from 'react-router-dom'
+import { content } from './content'
 
-export default function ActiveProject({ active, handleClose }) {
-  const [showInput, setInput] = useState(false)
+export default function ActiveProject() {
   const [status, setStatus] = useState('Submit your Project for Code Review')
-  const [email, setEmail] = useState('')
   const [pullRequest, setPullRequest] = useState('')
+  const [showInput, setInput] = useState(false)
+  const [project, setProject] = useState()
+  const [email, setEmail] = useState('')
+  const history = useHistory()
+  const { id } = useParams()
+
   const difficulties = ['Beginner', 'Intermediate', 'Advanced', 'Expert']
   const arrayToString = arr => arr.join(', ')
+
+  useEffect(() => {
+    const p = content.projects.find(i => i.id === parseInt(id))
+    if (!p) {
+      history.push('/projects')
+    }
+    setProject(p)
+  }, [id])
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -34,20 +47,20 @@ export default function ActiveProject({ active, handleClose }) {
     req.send(data)
   }
 
-  return active ? (
-    <Modal handleClose={handleClose}>
+  return project ? (
+    <Modal handleClose={() => history.push('/projects')}>
       <div id="ActiveProject">
         <div className="ActiveProjectHeader">
-          <h4>{active.index + 1}</h4>
+          <h4>{project.id}</h4>
           <div>
-            <h2>{active.name}</h2>
+            <h2>{project.name}</h2>
             <h6>
-              {difficulties[active.difficulty]} -{' '}
-              {arrayToString(active.content)}
+              {difficulties[project.difficulty]} -{' '}
+              {arrayToString(project.content)}
             </h6>
           </div>
         </div>
-        <p>{active.description}</p>
+        <p>{project.description}</p>
         {showInput ? (
           <>
             <h3>{status}</h3>
@@ -69,7 +82,7 @@ export default function ActiveProject({ active, handleClose }) {
         ) : (
           <>
             <a
-              href={active.githubUrl}
+              href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
             >

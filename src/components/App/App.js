@@ -6,6 +6,7 @@ import Projects from '../Projects/Projects'
 import Tutorials from '../Tutorials/Tutorials'
 import About from '../About/About'
 import './App.scss'
+import ActiveProject from '../Projects/ActiveProject'
 
 function App() {
   return (
@@ -15,6 +16,11 @@ function App() {
           <Route exact path="/">
             <Header hideBackground />
             <Landing />
+          </Route>
+          <Route path="/projects/:id">
+            <Header />
+            <Projects />
+            <ActiveProject />
           </Route>
           <Route path="/projects">
             <Header />
