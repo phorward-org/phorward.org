@@ -24,7 +24,6 @@
     align-items: center;
     flex-direction: column;
     padding: 16px;
-    min-height: 50vh;
     width: 100%;
 
     .Article {
@@ -34,7 +33,11 @@
       background: #eee;
       border-radius: 8px;
       text-align: left;
-      font-family: 'Charter';
+
+      &:hover {
+        background: $secondary;
+        cursor: pointer;
+      }
 
       div {
         text-align: center;
@@ -61,33 +64,36 @@
         }
         .Medium {
           position: absolute;
-          bottom: 0px;
-          right: -8px;
-          width: 22px;
+          bottom: 2px;
+          right: -6px;
+          width: 16px;
+          border-radius: 2px;
         }
       }
 
-      .Header {
+      .ArticleHeader {
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        margin-bottom: 8px;
+
+        h4 {
+          font-size: 28px;
+          font-weight: 700;
+          padding: 0;
+          margin: 0;
+          text-align: left;
+          line-height: 1;
+        }
       }
 
       .Tagline {
-        color: $secondary;
-      }
-
-      h4 {
-        color: #000;
-        font-size: 32px;
-        padding: 0;
-        margin: 0;
-        text-align: left;
-        line-height: 1;
+        font-weight: 700;
+        color: $primary;
       }
 
       h6 {
-        color: rgba(0, 0, 0, 0.64);
+        color: $grey3;
         font-size: 12px;
         padding: 0;
         margin: 0;
@@ -100,9 +106,9 @@
 
       p {
         line-height: 1.4;
-        color: rgba(0, 0, 0, 0.48);
+        color: $grey3;
         font-size: 14px;
-        margin-top: 0;
+        margin: 0 0 16px 0;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;

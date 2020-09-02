@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Input.scss'
 
 export function Input({ type, label, value, onChange, onSubmit, style }) {
   const [isUsed, setIsUsed] = useState(false)
 
-  // useEffect(() => {
-  //   !value && setIsUsed(false)
-  // }, [value])
+  useEffect(() => {
+    setIsUsed(!!value)
+  }, [value])
 
   return (
     <div className="Input" style={style}>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Modal from '../Modal'
 import { Input } from '../Input/Input'
-import './Projects.scss'
+import './ActiveProject.scss'
+import { Link } from 'react-router-dom'
 
 export default function ActiveProject({ active, handleClose }) {
   const [showInput, setInput] = useState(false)
@@ -77,13 +78,15 @@ export default function ActiveProject({ active, handleClose }) {
                 Get Started by Forking the Github Repository
               </button>
             </a>
-            <button onClick={() => setInput(true)}>
-              <img src="/github.svg" alt="Github" />
+            <button className="Submit" onClick={() => setInput(true)}>
+              <i className="fa fa-check" />
               Submit your Finished Project for Review
             </button>
 
             <div className="Links">
-              <p>Need help with Github?</p>
+              <Link to="/tutorials?search=github">
+                <p>Need help with Github?</p>
+              </Link>
             </div>
           </>
         )}

@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { Input } from '../Input/Input'
 import './Tutorials.scss'
+import { useLocation } from 'react-router-dom'
 const mediumUrl =
-  'https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@TidBytes?latest'
+  'https://api.rss2json.com/v1/api.json?latest=true&rss_url=https://medium.com/feed/@TidBytes?latest=true'
 
 export default function Tutorials() {
   const [search, setSearch] = useState('')
+  const location = useLocation()
+
   useEffect(() => {
-    setTimeout(() => {
-      const i = document.getElementById('twitter-widget-0')
-      if (i) {
-        i.scrolling = 'true'
-      }
-    }, 1000)
-  })
+    const s = new URLSearchParams(location.search).get('search')
+    if (s) {
+      setSearch(s)
+    }
+  }, [location.search])
 
   const Articles = () => {
     const [articles, setArticles] = useState([])
@@ -41,29 +42,32 @@ export default function Tutorials() {
       window.open(url, '_blank')
     }
 
-    return articles
-      .filter(a => a.title.includes(search))
-      .map(article => (
-        <div className="Article" key={article.link}>
-          <div className="Header">
-            <div className="Logo">
-              <img src="/icon.png" alt="Logo" />
-              <img className="Medium" src="/medium.png" alt="Medium" />
-            </div>
-            <h4>{article.title}</h4>
+    function filterBySearch(a) {
+      return a.filter(a => a.title.toLowerCase().includes(search.toLowerCase()))
+    }
+
+    return filterBySearch(articles).map(article => (
+      <div
+        className="Article"
+        key={article.link}
+        onClick={() => openArticle(article.link)}
+      >
+        <div className="ArticleHeader">
+          <div className="Logo">
+            <img src="/logo.svg" alt="Logo" />
+            <img className="Medium" src="/medium.png" alt="Medium" />
           </div>
-          <h6 className="Tagline">@AxiomWealthMgmt on Medium</h6>
-          <p>{stripHtml(article.description, article.title)}</p>
-          {article.categories.length ? (
-            <h6>tags: {article.categories.map(cat => cat).join(', ')}</h6>
-          ) : null}
           <div>
-            <button onClick={() => openArticle(article.link)}>
-              Read more...
-            </button>
+            <h4>{article.title}</h4>
+            <h6 className="Tagline">@TidBytes on Medium</h6>
           </div>
         </div>
-      ))
+        <p>{stripHtml(article.description, article.title)}</p>
+        {article.categories.length ? (
+          <h6>tags: {article.categories.join(', ')}</h6>
+        ) : null}
+      </div>
+    ))
   }
 
   return (
