@@ -1,0 +1,7 @@
+type Project {
+  name: String!
+  description: String
+  difficulty: Int
+  createdAt: Int
+  updatedAt: Int
+}

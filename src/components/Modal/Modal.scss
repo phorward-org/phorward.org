@@ -1,0 +1,94 @@
+@import '../../styles/index.scss';
+
+#ModalBackground {
+  z-index: 30;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  background: rgba(0, 0, 0, 0.64);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fade-in 0.32s ease;
+  z-index: 40;
+  transition: all 0.32s ease;
+
+  &.closing {
+    background: $transparent;
+  }
+
+  #Modal {
+    position: relative;
+    width: 92%;
+    max-width: 800px;
+    min-height: 100px;
+    padding: 16px 32px;
+    background: $white;
+    border-radius: 8px;
+    max-height: 92%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    animation: slide-in 0.32s ease;
+
+    &.closing {
+      animation: slide-out 0.32s ease;
+    }
+
+    @media (max-width: 600px) {
+      padding: 16px;
+    }
+
+    i {
+      position: absolute;
+      top: 32px;
+      right: 32px;
+      color: $primary;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 2;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateY(200%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-out {
+    from {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(200%);
+      opacity: 0;
+    }
+  }
+}
