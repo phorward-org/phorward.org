@@ -1,28 +1,51 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './Header.scss'
+import useWidth from '../../hooks/useWidth'
 
 export default function Header({ hideBackground }) {
+  const { mobile } = useWidth()
   const { pathname } = useLocation()
+  const [expanded, setExpanded] = useState(false)
+  const toggleExpanded = () => setExpanded(!expanded)
   const isActive = a => pathname.replace('/', '') === a
 
+  const HeaderLinks = () => (
+    <ul>
+      <Link to="/projects" onClick={() => setExpanded(false)}>
+        <li className={isActive('projects') ? 'active' : ''}>Projects</li>
+      </Link>
+      <Link to="/tutorials" onClick={() => setExpanded(false)}>
+        <li className={isActive('tutorials') ? 'active' : ''}>Tutorials</li>
+      </Link>
+      <Link to="/about" onClick={() => setExpanded(false)}>
+        <li className={isActive('about') ? 'active' : ''}>About</li>
+      </Link>
+    </ul>
+  )
+
   return (
-    <header className={hideBackground ? 'Header transparent' : 'Header'}>
+    <header
+      id="Header"
+      className={`
+        ${hideBackground ? 'transparent' : ''}
+        ${expanded ? ' expanded' : ''}
+      `}
+    >
       <Link to="/">
-        <h2>TidBytes</h2>
+        <h2 onClick={() => setExpanded(false)}>TidBytes</h2>
       </Link>
       <aside id="HeaderBackground" />
-      <ul>
-        <Link to="/projects">
-          <li className={isActive('projects') ? 'active' : ''}>Projects</li>
-        </Link>
-        <Link to="/tutorials">
-          <li className={isActive('tutorials') ? 'active' : ''}>Tutorials</li>
-        </Link>
-        <Link to="/about">
-          <li className={isActive('about') ? 'active' : ''}>About</li>
-        </Link>
-      </ul>
+      {mobile ? (
+        <>
+          <img src="/menu.png" alt="Menu" onClick={toggleExpanded} />
+          <div id="HeaderLinksMobile" className={expanded ? 'expanded' : ''}>
+            <HeaderLinks />
+          </div>
+        </>
+      ) : (
+        <HeaderLinks />
+      )}
     </header>
   )
 }

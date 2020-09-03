@@ -1,6 +1,6 @@
 @import '../../styles/vars.scss';
 
-.Header {
+#Header {
   position: fixed;
   top: 0;
   left: 0;
@@ -9,9 +9,42 @@
   padding: 16px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   overflow: hidden;
   z-index: 10;
+
+  &.transparent {
+    #HeaderBackground {
+      display: none;
+    }
+  }
+
+  &.expanded {
+    #HeaderBackground {
+      display: block;
+      background: rgba($dark, 0.84);
+    }
+    height: 80vh;
+    align-items: flex-start;
+  }
+
+  img {
+    height: 48px;
+  }
+
+  #HeaderLinksMobile {
+    display: none;
+
+    &.expanded {
+      position: absolute;
+      top: 96px;
+      display: flex;
+      ul {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
 
   #HeaderBackground {
     position: absolute;
@@ -23,23 +56,19 @@
     z-index: -1;
   }
 
-  &.transparent {
-    #HeaderBackground {
-      display: none;
-    }
-  }
-
   h2 {
     color: $white;
     font-weight: 900;
     letter-spacing: -1px;
+    margin-top: 12px;
   }
 
   ul {
     text-decoration: none;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    margin-top: 8px;
 
     li {
       color: white;
@@ -53,6 +82,10 @@
       &.active {
         font-weight: 900;
         color: $white;
+      }
+
+      @media (max-width: $mobile) {
+        font-size: 32px;
       }
     }
   }

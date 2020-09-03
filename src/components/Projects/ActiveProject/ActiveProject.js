@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import Modal from '../Modal'
-import { Input } from '../Input/Input'
-import './ActiveProject.scss'
 import { Link, useParams, useHistory } from 'react-router-dom'
-import { content } from './content'
+import useWidth from '../../../hooks/useWidth'
+import { Input } from '../../Input/Input'
+import Modal from '../../Modal'
+import './ActiveProject.scss'
 
-export default function ActiveProject() {
+export default function ActiveProject({ projects }) {
+  const { mobile } = useWidth()
   const [status, setStatus] = useState('Submit your Project for Code Review')
   const [pullRequest, setPullRequest] = useState('')
   const [showInput, setInput] = useState(false)
@@ -18,12 +19,11 @@ export default function ActiveProject() {
   const arrayToString = arr => arr.join(', ')
 
   useEffect(() => {
-    const p = content.projects.find(i => i.id === parseInt(id))
-    if (!p) {
-      history.push('/projects')
+    if (projects) {
+      const p = projects.find(i => i.id === parseInt(id))
+      p ? setProject(p) : history.push('/projects')
     }
-    setProject(p)
-  }, [id])
+  }, [id, projects]) // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleSubmit(e) {
     e.preventDefault()
@@ -88,12 +88,16 @@ export default function ActiveProject() {
             >
               <button>
                 <img src="/github.svg" alt="Github" />
-                Get Started by Forking the Github Repository
+                {mobile
+                  ? 'View Github Repo'
+                  : 'Get Started by Forking the Github Repository'}
               </button>
             </a>
             <button className="Submit" onClick={() => setInput(true)}>
               <i className="fa fa-check" />
-              Submit your Finished Project for Review
+              {mobile
+                ? 'Submit for Review'
+                : 'Submit your Finished Project for Review'}
             </button>
 
             <div className="Links">

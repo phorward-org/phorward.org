@@ -1,4 +1,4 @@
-@import '../../styles/vars.scss';
+@import '../../../styles/vars.scss';
 
 #ActiveProject {
   padding: 16px 0;
@@ -13,6 +13,10 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
+
+      @media (max-width: $mobile) {
+        padding-right: 32px;
+      }
     }
   }
 
@@ -26,6 +30,7 @@
 
   h4 {
     background: $secondary;
+    flex-shrink: 0;
     color: $white;
     height: 42px;
     width: 42px;

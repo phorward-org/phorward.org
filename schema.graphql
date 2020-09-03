@@ -5,3 +5,9 @@ type Project {
   createdAt: Int
   updatedAt: Int
 }
+
+type User {
+  name: String!
+  email: String! @unique
+  password: String!
+}

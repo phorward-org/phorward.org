@@ -10,8 +10,16 @@
   justify-content: flex-start;
   align-items: flex-start;
 
+  @media (max-width: $mobile) {
+    padding: 132px 16px 32px 16px;
+  }
+
   p {
     margin: 8px 0 32px 0;
+  }
+
+  a {
+    width: 100%;
   }
 
   .NoProjects {
@@ -35,42 +43,6 @@
     h5 {
       font-weight: 900;
       color: $primary;
-    }
-  }
-
-  .Project {
-    display: grid;
-    width: 100%;
-    grid-template-columns: 48px 2fr 1fr 1fr 1fr;
-    width: 100%;
-    padding: 16px;
-    background: $grey1;
-    margin: 8px 0;
-    border-radius: 8px;
-
-    * {
-      margin: auto 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      min-height: 20px;
-    }
-
-    h4 {
-      background: $secondary;
-      color: $white;
-      height: 32px;
-      width: 32px;
-      font-weight: 900;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-    }
-
-    h3 {
-      font-size: 18px;
-      font-weight: 700;
     }
   }
 }

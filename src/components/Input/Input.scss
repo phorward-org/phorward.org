@@ -28,7 +28,7 @@
     padding: 20px 16px 8px 16px;
     font-size: 18px;
     font-weight: 700;
-    color: $primary;
+    color: $black;
     width: 100%;
     background: $grey1;
     z-index: 1;
@@ -42,9 +42,22 @@
     right: 0px;
     top: -16px;
     height: 100%;
-    width: auto;
+    width: 48px;
+    padding: 0;
     z-index: 1;
     border-radius: 0 8px 8px 0;
     background: $blue;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    i {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 }

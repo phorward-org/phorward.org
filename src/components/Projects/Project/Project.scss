@@ -1,0 +1,42 @@
+@import '../../../styles/vars.scss';
+
+.Project {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 48px 2fr 1fr 1fr 1fr;
+  width: 100%;
+  padding: 16px;
+  background: $grey1;
+  margin: 8px 0;
+  border-radius: 8px;
+
+  @media (max-width: $mobile) {
+    grid-template-columns: 48px auto;
+  }
+
+  * {
+    margin: auto 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-height: 20px;
+  }
+
+  h4 {
+    background: $secondary;
+    color: $white;
+    flex-shrink: 0;
+    height: 32px;
+    width: 32px;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+  }
+}

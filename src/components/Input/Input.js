@@ -34,7 +34,7 @@ export function Input({ type, label, value, onChange, onSubmit, style }) {
       )}
       {onSubmit && (
         <button id="SubmitButton" onClick={onSubmit}>
-          Submit
+          <i className="fa fa-check" />
         </button>
       )}
     </div>
