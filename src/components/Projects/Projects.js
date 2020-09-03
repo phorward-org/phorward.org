@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import Project from './Project/Project'
 import './Projects.scss'
 import { Input } from '../Input/Input'
-import useWidth from '../../hooks/useWidth'
+import useMobile from '../../hooks/useMobile'
+import { Link } from 'react-router-dom'
 
 export default function Projects({ projects }) {
-  const { mobile } = useWidth()
+  const mobile = useMobile()
   const [search, setSearch] = useState('')
-  const columns = ['', 'Name', 'Content', 'Difficulty', 'Progress']
+  const columns = ['', 'Name', 'Stack', 'Difficulty', 'Progress']
 
   function filterBySearch(a) {
     return a.filter(a => a.name.toLowerCase().includes(search.toLowerCase()))
@@ -21,13 +22,20 @@ export default function Projects({ projects }) {
 
   return projects ? (
     <div id="Projects">
-      <h1>Projects</h1>
+      <h1>
+        <span role="img" aria-label="About">
+          🔨
+        </span>
+        Projects
+      </h1>
       <p>
-        This is where the magic happens! Select a project from the list below to
-        get started.
+        Welcome to TidBytes! Pick a project from the list below to get to work.
+        If you get stuck, you can always check out the{' '}
+        <Link to="/tutorials">Tutorials</Link> page for more info, or{' '}
+        <Link to="/contact">Reach Out</Link> to report a problem. Happy coding!
       </p>
       <Input
-        label="Search"
+        label="🔍 Search"
         onChange={setSearch}
         value={search}
         style={searchStyle}

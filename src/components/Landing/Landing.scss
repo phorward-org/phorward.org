@@ -14,13 +14,37 @@
     padding: 24vh 16px 64px 16px;
   }
 
+  #Cursor1,
+  #Cursor2 {
+    height: 48px;
+    width: 16px;
+    background: $neon;
+  }
+
+  #Cursor1 {
+    display: inline;
+    animation: disappear 0s forwards linear 1.8s;
+  }
+
+  #Cursor2 {
+    opacity: 0;
+    animation: appear 0s forwards linear 1.8s, blink 0.84s forwards infinite 4s;
+  }
+
   > h1 {
+    position: relative;
     color: $white;
+    padding-right: 24px;
+    &:empty {
+      height: 48px;
+    }
   }
 
   > h4 {
     margin-top: 16px;
     color: $white;
+    opacity: 0;
+    animation: fade-in 0.48s ease-in forwards 4s;
 
     @media (max-width: $mobile) {
       font-size: 18px;
@@ -32,6 +56,8 @@
     align-items: center;
     justify-content: center;
     margin: 32px 0;
+    opacity: 0;
+    animation: fade-in 0.48s ease-in forwards 4s;
 
     @media (max-width: $mobile) {
       flex-direction: column;
@@ -44,8 +70,44 @@
       border: 3px solid $white;
 
       &:hover {
-        font-weight: 900;
+        background: rgba($dark, 0.32);
       }
     }
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  49% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams, useHistory } from 'react-router-dom'
-import useWidth from '../../../hooks/useWidth'
+import useMobile from '../../../hooks/useMobile'
 import { Input } from '../../Input/Input'
 import Modal from '../../Modal'
 import './ActiveProject.scss'
 
 export default function ActiveProject({ projects }) {
-  const { mobile } = useWidth()
+  const mobile = useMobile()
   const [status, setStatus] = useState('Submit your Project for Code Review')
   const [pullRequest, setPullRequest] = useState('')
   const [showInput, setInput] = useState(false)

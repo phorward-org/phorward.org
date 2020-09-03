@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { Input } from '../Input/Input'
-import './Tutorials.scss'
 import { useLocation } from 'react-router-dom'
+import useMobile from '../../hooks/useMobile'
+import './Tutorials.scss'
+
 const mediumUrl =
   'https://api.rss2json.com/v1/api.json?latest=true&rss_url=https://medium.com/feed/@TidBytes?latest=true'
 
 export default function Tutorials() {
+  const mobile = useMobile()
   const [search, setSearch] = useState('')
   const location = useLocation()
+  const [articles, setArticles] = useState([])
+
+  useEffect(() => {
+    fetch(mediumUrl)
+      .then(res => res.json())
+      .then(data => setArticles(data.items))
+  }, [])
 
   useEffect(() => {
     const s = new URLSearchParams(location.search).get('search')
@@ -16,18 +26,11 @@ export default function Tutorials() {
     }
   }, [location.search])
 
+  const searchStyle = mobile
+    ? null
+    : { position: 'absolute', right: 64, top: 140, width: 280 }
+
   const Articles = () => {
-    const [articles, setArticles] = useState([])
-
-    useEffect(() => {
-      fetch(mediumUrl)
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          setArticles(data.items)
-        })
-    }, [])
-
     function stripHtml(html, title) {
       var tmp = document.createElement('DIV')
       tmp.innerHTML = html
@@ -46,46 +49,58 @@ export default function Tutorials() {
       return a.filter(a => a.title.toLowerCase().includes(search.toLowerCase()))
     }
 
-    return filterBySearch(articles).map(article => (
-      <div
-        className="Article"
-        key={article.link}
-        onClick={() => openArticle(article.link)}
-      >
-        <div className="ArticleHeader">
-          <div className="Logo">
-            <img src="/logo.svg" alt="Logo" />
-            <img className="Medium" src="/medium.png" alt="Medium" />
+    const filtered = filterBySearch(articles)
+
+    return filtered.length ? (
+      filterBySearch(articles).map(article => (
+        <div
+          className="Article"
+          key={article.link}
+          onClick={() => openArticle(article.link)}
+        >
+          <div className="ArticleHeader">
+            <div className="Logo">
+              <img src="/logo.svg" alt="Logo" />
+              <img className="Medium" src="/medium.png" alt="Medium" />
+            </div>
+            <div>
+              <h4>{article.title}</h4>
+              <h6 className="Tagline">@TidBytes on Medium</h6>
+            </div>
           </div>
-          <div>
-            <h4>{article.title}</h4>
-            <h6 className="Tagline">@TidBytes on Medium</h6>
-          </div>
+          <p>{stripHtml(article.description, article.title)}</p>
+          {article.categories.length ? (
+            <h6>tags: {article.categories.join(', ')}</h6>
+          ) : null}
         </div>
-        <p>{stripHtml(article.description, article.title)}</p>
-        {article.categories.length ? (
-          <h6>tags: {article.categories.join(', ')}</h6>
-        ) : null}
-      </div>
-    ))
+      ))
+    ) : (
+      <h4>No articles match your search!</h4>
+    )
   }
 
   return (
     <div id="Tutorials">
-      <h1>Tutorials</h1>
+      <h1>
+        <span role="img" aria-label="About">
+          💡
+        </span>
+        Tutorials
+      </h1>
       <p>
-        Check out the articles below to learn about new topics and take on
-        challenges. All of the articles below are original content published on
-        Medium - feel free to give us claps if you like what you see!
+        Need help getting rolling on a TidBytes projects? Maybe got stuck
+        somewhere in the middle? Checkout the articles below to help get
+        unstuck. If you find what we do helpful, be sure to give us some claps,
+        and help spread the word to new devs!
       </p>
       <Input
-        label="Search"
+        label="🔍 Search"
         onChange={setSearch}
         value={search}
-        style={{ position: 'absolute', right: 64, top: 140, width: 240 }}
+        style={searchStyle}
       />
       <div id="Medium">
-        <Articles />
+        {articles ? <Articles /> : <h4>Loading articles...</h4>}
       </div>
     </div>
   )

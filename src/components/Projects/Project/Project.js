@@ -1,10 +1,10 @@
 import React from 'react'
-import useWidth from '../../../hooks/useWidth'
+import useMobile from '../../../hooks/useMobile'
 import { Link } from 'react-router-dom'
 import './Project.scss'
 
 export default function Project({ project }) {
-  const { mobile } = useWidth()
+  const mobile = useMobile()
   const difficulties = ['Beginner', 'Intermediate', 'Advanced', 'Expert']
   const arrayToString = arr => arr.join(', ')
 

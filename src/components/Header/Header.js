@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import './Header.scss'
-import useWidth from '../../hooks/useWidth'
+import useMobile from '../../hooks/useMobile'
 
 export default function Header({ hideBackground }) {
-  const { mobile } = useWidth()
+  const mobile = useMobile()
   const { pathname } = useLocation()
   const [expanded, setExpanded] = useState(false)
   const toggleExpanded = () => setExpanded(!expanded)
@@ -20,6 +20,9 @@ export default function Header({ hideBackground }) {
       </Link>
       <Link to="/about" onClick={() => setExpanded(false)}>
         <li className={isActive('about') ? 'active' : ''}>About</li>
+      </Link>
+      <Link to="/contact" onClick={() => setExpanded(false)}>
+        <li className={isActive('contact') ? 'active' : ''}>Contact</li>
       </Link>
     </ul>
   )
