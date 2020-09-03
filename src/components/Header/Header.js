@@ -37,6 +37,7 @@ export default function Header({ hideBackground }) {
     >
       <Link to="/">
         <h2 onClick={() => setExpanded(false)}>TidBytes</h2>
+        <div id="Beta">BETA</div>
       </Link>
       <aside id="HeaderBackground" />
       {mobile ? (

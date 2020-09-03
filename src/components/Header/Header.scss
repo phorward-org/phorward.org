@@ -89,4 +89,16 @@
       }
     }
   }
+
+  #Beta {
+    position: absolute;
+    top: 20px;
+    left: 144px;
+    font-size: 10px;
+    font-weight: 700;
+    color: $white;
+    background: $blue;
+    padding: 4px 6px;
+    border-radius: 4px;
+  }
 }
