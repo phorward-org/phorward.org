@@ -28,8 +28,9 @@
     align-items: flex-start;
   }
 
-  img {
+  #MenuButton {
     height: 48px;
+    margin-top: 8px;
   }
 
   #HeaderLinksMobile {
@@ -56,11 +57,18 @@
     z-index: -1;
   }
 
+  img {
+    height: 64px;
+    border-radius: 16px;
+  }
+
   h2 {
     color: $white;
     font-weight: 900;
     letter-spacing: -1px;
     margin-top: 12px;
+    margin-left: -12px;
+    margin-right: auto;
   }
 
   ul {
@@ -88,17 +96,5 @@
         font-size: 32px;
       }
     }
-  }
-
-  #Beta {
-    position: absolute;
-    top: 20px;
-    left: 144px;
-    font-size: 10px;
-    font-weight: 700;
-    color: $white;
-    background: $blue;
-    padding: 4px 6px;
-    border-radius: 4px;
   }
 }

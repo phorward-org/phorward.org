@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import Logo from '../../assets/logo.svg'
 import './Header.scss'
 import useMobile from '../../hooks/useMobile'
 
@@ -12,17 +13,14 @@ export default function Header({ hideBackground }) {
 
   const HeaderLinks = () => (
     <ul>
-      <Link to="/projects" onClick={() => setExpanded(false)}>
-        <li className={isActive('projects') ? 'active' : ''}>Projects</li>
+      <Link to="/who" onClick={() => setExpanded(false)}>
+        <li className={isActive('who') ? 'active' : ''}>Who We Are</li>
       </Link>
-      <Link to="/tutorials" onClick={() => setExpanded(false)}>
-        <li className={isActive('tutorials') ? 'active' : ''}>Tutorials</li>
-      </Link>
-      <Link to="/about" onClick={() => setExpanded(false)}>
-        <li className={isActive('about') ? 'active' : ''}>About</li>
+      <Link to="/what" onClick={() => setExpanded(false)}>
+        <li className={isActive('what') ? 'active' : ''}>What We Do</li>
       </Link>
       <Link to="/contact" onClick={() => setExpanded(false)}>
-        <li className={isActive('contact') ? 'active' : ''}>Contact</li>
+        <li className={isActive('contact') ? 'active' : ''}>Reach Out</li>
       </Link>
     </ul>
   )
@@ -36,13 +34,17 @@ export default function Header({ hideBackground }) {
       `}
     >
       <Link to="/">
-        <h2 onClick={() => setExpanded(false)}>TidBytes</h2>
-        <div id="Beta">BETA</div>
+        <img src={Logo} alt="Home" />
       </Link>
       <aside id="HeaderBackground" />
       {mobile ? (
         <>
-          <img src="/menu.png" alt="Menu" onClick={toggleExpanded} />
+          <img
+            id="MenuButton"
+            src="/menu.png"
+            alt="Menu"
+            onClick={toggleExpanded}
+          />
           <div id="HeaderLinksMobile" className={expanded ? 'expanded' : ''}>
             <HeaderLinks />
           </div>

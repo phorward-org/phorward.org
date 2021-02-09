@@ -23,12 +23,12 @@
 
   #Cursor1 {
     display: inline;
-    animation: disappear 0s forwards linear 1.8s;
+    animation: disappear 0s forwards linear 1.4s;
   }
 
   #Cursor2 {
     opacity: 0;
-    animation: appear 0s forwards linear 1.8s, blink 0.84s forwards infinite 4s;
+    animation: appear 0s forwards linear 1.4s, blink 0.84s forwards infinite 3s;
   }
 
   > h1 {
@@ -38,13 +38,18 @@
     &:empty {
       height: 48px;
     }
+
+    @media (max-width: $mobile) {
+      font-size: 32px;
+    }
   }
 
   > h4 {
     margin-top: 16px;
     color: $white;
     opacity: 0;
-    animation: fade-in 0.48s ease-in forwards 4s;
+    animation: fade-in 0.48s ease-in forwards 3s;
+    max-width: 600px;
 
     @media (max-width: $mobile) {
       font-size: 18px;
@@ -57,7 +62,7 @@
     justify-content: center;
     margin: 32px 0;
     opacity: 0;
-    animation: fade-in 0.48s ease-in forwards 4s;
+    animation: fade-in 0.48s ease-in forwards 3s;
 
     @media (max-width: $mobile) {
       flex-direction: column;

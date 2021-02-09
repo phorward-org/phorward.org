@@ -1,115 +1,78 @@
 import React from 'react'
-import './About.scss'
 import { Link } from 'react-router-dom'
+import './About.scss'
 
 export default function About() {
   return (
     <div id="About">
-      <h1>
-        <span role="img" aria-label="About">
-          ℹ️
-        </span>
-        About
-      </h1>
+      <h1>Who We Are</h1>
       <div>
-        <img src="/logo.svg" alt="TidBytes Logo" />
+        <img src="/logo_white.png" alt="TidBytes Logo" />
         <div>
-          <p style={{ fontWeight: 700 }}>Hi, we're TidBytes.</p>
+          <p style={{ fontWeight: 700 }}>Hi, we're Phorward.</p>
           <p>
-            We believe in accessible education, and want to help pave a pathway
-            for people of all backgrounds to become software engineers. We
-            believe that full-stack web development is one of the most
-            accessible and in-demand skill sets, and are working to provide real
-            world projects to bridge the gap between tutorials and job
-            interviews.
+            We're a team of community minded software engineers with the skills
+            and resources to meaningfully change how non-profits run. We use our
+            time and energy to build software applications that help community
+            organizations do what they do faster, better, and at a larger scale.
+            For free.
           </p>
         </div>
       </div>
 
       <div className="right">
         <div>
+          <p style={{ fontWeight: 700 }}>So how does that work?</p>
           <p>
-            While working in the self-taught and bootcamp developer space, we
-            noticed a gap for aspiring engineers.{' '}
-            <span style={{ fontWeight: 700 }}>
-              There are tons of amazing tutorial resources available for
-              beginners to learn the basics,
-            </span>{' '}
-            including but not limited to{' '}
-            <a
-              href="https://www.codecademy.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Codecademy
-            </a>{' '}
-            and{' '}
-            <a
-              href="https://www.freecodecamp.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Free Code Camp
-            </a>
-            . There are even some like{' '}
-            <a
-              href="https://www.theodinproject.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              The Odin Project
-            </a>{' '}
-            that are focused on step-by-step builds of basic applications
-            (awesome, we love everything about it).
-          </p>
-          <p>
-            But the gap between finishing a javascript tutorial and building
-            your first web app from scratch is a big one, and getting started
-            can be daunting.
+            We acknowledge that we have the privilege to work in an in-demand,
+            well-paying industry that often creates value{' '}
+            <span style={{ fontStyle: 'italic' }}>outside</span> our own
+            communities. With that in mind, we use the flexibility that remote
+            work provides to build software that makes a difference right here
+            at home.
           </p>
         </div>
 
-        <img src="/free_resources.svg" alt="Free Resources" />
+        <img src="/philly.png" alt="Free Resources" />
       </div>
 
       <div>
-        <img src="/engineer.jpg" alt="Software Engineer" />
+        <img src="/networking.jpg" alt="Software Engineer" />
         <div>
           <p style={{ fontWeight: 700 }}>
-            There are so many problems a new engineer can run into while
-            building their first project from scratch.
+            Our goal is to increase our city's access to tech, in more ways than
+            one.
           </p>
           <p>
-            And in fact, many of those problems have nothing to do with the
-            tutorial they just finished. Version control, package managers, DNS
-            configuration, the list goes on. We wanted to know if there was a
-            way we could help.
+            Philly is home to hundreds of nonprofits working to better the
+            community we live in. We know that we can improve the way they work
+            by providing the right tools and technologies for the job.
           </p>
           <p>
-            Could there be an easier path into publishing code as a web
-            developer? Is there a way to provide real world experience that
-            mirrors an on-the-job workflow? How might new engineers solve real
-            world problems in a realistic amount of time, and get the feedback
-            they need to continuously improve their skills?
+            We aim to partner with training programs in the city to provide
+            meaningful work for up-and-coming engineers to gain work experience
+            and work in a real-world environment. Access is everything, and we
+            want to share the resources we have with those who need it most.
           </p>
         </div>
       </div>
 
       <div className="right">
         <div>
-          <p style={{ fontWeight: 700 }}>Welcome to TidBytes.</p>
+          <p style={{ fontWeight: 700 }}>
+            Have a project that could use our help?
+          </p>
           <p>
-            We build incomplete projects for new engineers to take, improve,
-            own, and deploy. Using public GitHub repos and pull requests, we
-            provide completely free code review and feedback. We hope that we
-            can help engineers practice, improve, and build their portfolio.
+            We're constantly looking for organizations that could benefit from
+            new software. Use the button below to get in touch with our team,
+            and we'll be sure to follow up and learn more about your work.
           </p>
           <p>Interested in getting started?</p>
-          <Link to="/projects">
-            <button>Open your First Project</button>
+          <Link to="/contact">
+            <button>Reach Out</button>
           </Link>
         </div>
-        <img src="/logo.svg" alt="TidBytes Logo" />
+        <img src="/logo_white.png" alt="Logo" />
       </div>
     </div>
   )

@@ -7,7 +7,7 @@ export default function Contact() {
   const [message, setMessage] = useState('')
   const [name, setName] = useState()
   const [status, setStatus] = useState(
-    'Reach out to TidBytes! We would love to hear from you!'
+    'The best way to start a project with Phorward is to get in touch. Fill out the form below so we can learn more about you and your organization.'
   )
 
   function handleSubmit(e) {
@@ -35,14 +35,9 @@ export default function Contact() {
 
   return (
     <div id="Contact">
-      <h1>
-        <span role="img" aria-label="Contact">
-          👋
-        </span>
-        Contact
-      </h1>
+      <h1>Reach Out</h1>
+      <p>{status}</p>
       <div id="ContactForm">
-        <h3>{status}</h3>
         <Input label="Your name" value={name} onChange={setName} />
         <Input label="Your email address" value={email} onChange={setEmail} />
         <Input
