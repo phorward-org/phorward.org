@@ -41,6 +41,10 @@
       font-weight: 900;
       width: 100%;
       padding: 8px 32px;
+
+      @media (max-width: $mobile) {
+        padding: 8px 4px;
+      }
     }
     p {
       width: 100%;
